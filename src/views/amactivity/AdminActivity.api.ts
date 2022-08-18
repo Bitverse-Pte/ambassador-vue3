@@ -7,6 +7,7 @@ enum Api {
   list = '/amactivity/adminActivity/list',
   save='/amactivity/adminActivity/add',
   edit='/amactivity/adminActivity/edit',
+  approve='/amactivity/adminActivity/approve',
   deleteOne = '/amactivity/adminActivity/delete',
   deleteBatch = '/amactivity/adminActivity/deleteBatch',
   importExcel = '/amactivity/adminActivity/importExcel',
@@ -27,14 +28,15 @@ export const getImportUrl = Api.importExcel;
  */
 export const list = (params) => {
   params.status = "0";
-  defHttp.get({url: Api.list, params});
+  return defHttp.get({url: Api.list, params});
 }
   
 
-export const listFinished = (params) => {
+export const finishedList = (params) => {
   params.status = "1";
-  defHttp.get({url: Api.list, params});
+  return defHttp.get({url: Api.list, params});
 }
+  
 
 /**
  * 删除单个
@@ -69,4 +71,8 @@ export const batchDelete = (params, handleSuccess) => {
 export const saveOrUpdate = (params, isUpdate) => {
   let url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({url: url, params});
+}
+
+export const approve = (params) => {
+  return defHttp.put({url: Api.approve, params});
 }

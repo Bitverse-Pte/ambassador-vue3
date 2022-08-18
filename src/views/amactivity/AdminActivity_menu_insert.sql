@@ -6,7 +6,7 @@ INSERT INTO sys_permission(id, parent_id, name, url, component, component_name, 
 VALUES ('2022081503372720540', NULL, 'admin activity', '/amactivity/adminActivityList', 'amactivity/AdminActivityList', NULL, NULL, 0, NULL, '1', 1.00, 0, NULL, 1, 1, 0, 0, 0, NULL, '1', 0, 0, 'admin', '2022-08-15 15:37:54', NULL, NULL, 0);
 
 INSERT INTO sys_permission(id, parent_id, name, url, component, component_name, redirect, menu_type, perms, perms_type, sort_no, always_show, icon, is_route, is_leaf, keep_alive, hidden, hide_tab, description, status, del_flag, rule_flag, create_by, create_time, update_by, update_time, internal_or_external) 
-VALUES ('2022081503372720547', NULL, 'finished admin activity', '/amactivity/adminActivityFinishedList', 'amactivity/AdminActivityFinishedList', NULL, NULL, 0, NULL, '1', 1.00, 0, NULL, 1, 1, 0, 0, 0, NULL, '1', 0, 0, 'admin', '2022-08-15 15:37:54', NULL, NULL, 0);
+VALUES ('2022081503372720547', NULL, 'Finished Activity', '/amactivity/adminActivityFinishedList', 'amactivity/AdminActivityFinishedList', NULL, NULL, 0, NULL, '1', 1.00, 0, NULL, 1, 1, 0, 0, 0, NULL, '1', 0, 0, 'admin', '2022-08-15 15:37:54', NULL, NULL, 0);
 
 -- 权限控制sql
 -- 新增

@@ -8,15 +8,15 @@
     import {ref, computed, unref} from 'vue';
     import {BasicModal, useModalInner} from '/@/components/Modal';
     import {BasicForm, useForm} from '/@/components/Form/index';
-    import {formSchema} from '../AdminActivity.data';
-    import {saveOrUpdate} from '../AdminActivity.api';
+    import {approvalFormSchema} from '../AdminActivity.data';
+    import {approve} from '../AdminActivity.api';
     // Emits声明
     const emit = defineEmits(['register','success']);
     const isUpdate = ref(true);
     //表单配置
     const [registerForm, {setProps,resetFields, setFieldsValue, validate}] = useForm({
         labelWidth: 150,
-        schemas: formSchema,
+        schemas: approvalFormSchema,
         showActionButtonGroup: false,
         baseColProps: {span: 24}
     });
@@ -36,14 +36,15 @@
        setProps({ disabled: !data?.showFooter })
     });
     //设置标题
-    const title = computed(() => (!unref(isUpdate) ? '新增' : '编辑'));
+    const title = computed(() => (!unref(isUpdate) ? '新增' : '审核'));
     //表单提交事件
     async function handleSubmit(v) {
         try {
             let values = await validate();
+            values.status = "1";
             setModalProps({confirmLoading: true});
             //提交表单
-            await saveOrUpdate(values, isUpdate.value);
+            await approve(values);
             //关闭弹窗
             closeModal();
             //刷新列表

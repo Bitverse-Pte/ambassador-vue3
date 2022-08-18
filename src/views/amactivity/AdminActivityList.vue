@@ -40,7 +40,7 @@
     </BasicTable>
     <!-- 表单区域 -->
     <AdminActivityModal @register="registerModal" @success="handleSuccess"></AdminActivityModal>
-    <ActivityApprovalModal  @register="registerApprovalModal" @success="handleSuccess"></ActivityApprovalModal>
+    <ApprovalActivityModal @register="registerApprovalModal" @success="handleSuccess"/>
   </div>
 </template>
 
@@ -50,14 +50,14 @@
   import {useModal} from '/@/components/Modal';
   import { useListPage } from '/@/hooks/system/useListPage'
   import AdminActivityModal from './components/AdminActivityModal.vue'
-  import ActivityApprovalModal from './components/ActivityApprovalModal.vue'
+  import ApprovalActivityModal from './components/ApprovalActivityModal.vue'
   import {columns, searchFormSchema} from './AdminActivity.data';
   import {list, deleteOne, batchDelete, getImportUrl,getExportUrl} from './AdminActivity.api';
   import { downloadFile } from '/@/utils/common/renderUtils';
   const checkedKeys = ref<Array<string | number>>([]);
   //注册model
   const [registerModal, {openModal: openModal}] = useModal();
-  const [registerApprovalModal, {openModal: openApprovalModal}] = useModal();
+   const [registerApprovalModal, {openModal: openApprovalModal}] = useModal();
   //注册table数据
   const { prefixCls,tableContext,onExportXls,onImportXls } = useListPage({
       tableProps:{
@@ -101,14 +101,6 @@
        showFooter: true,
      });
   }
-
-  function handleAudit() {
-    //openModal
-    openApprovalModal(true, {
-
-    });
-  }
-
    /**
     * 编辑事件
     */
@@ -127,6 +119,13 @@
        record,
        isUpdate: true,
        showFooter: false,
+     });
+   }
+   function handleAudit(record: Recordable) {
+     openApprovalModal(true, {
+      record,
+      isUpdate: true,
+      showFooter: true,
      });
    }
    /**
@@ -152,10 +151,10 @@
       */
   function getTableAction(record){
        return [
-          {
-            label: '审核',
-            onClick: handleAudit.bind(null, record),
-          }
+         {
+           label: '审核',
+           onClick: handleAudit.bind(null, record),
+         }
        ]
    }
      /**
@@ -163,15 +162,14 @@
         */
   function getDropDownAction(record){
        return [
+          {
+           label: '编辑',
+           onClick: handleEdit.bind(null, record),
+          },
          {
            label: '详情',
            onClick: handleDetail.bind(null, record),
-         }, 
-         {
-           label: '编辑',
-           onClick: handleEdit.bind(null, record),
-         },
-         {
+         }, {
            label: '删除',
            popConfirm: {
              title: '是否确认删除',

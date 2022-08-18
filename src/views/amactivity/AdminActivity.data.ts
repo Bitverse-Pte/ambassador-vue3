@@ -114,3 +114,75 @@ export const formSchema: FormSchema[] = [
 	  show: false
 	},
 ];
+
+export const approvalFormSchema: FormSchema[] = [
+  {
+    label: 'Title',
+    field: 'title',
+    component: 'Input',
+    dynamicDisabled:true,
+    show: false
+  },
+  {
+    label: 'Sender',
+    field: 'sender',
+    component: 'Input',
+    dynamicDisabled:true,
+  },
+  {
+    label: 'Send time',
+    field: 'sendTime',
+    component: 'DatePicker',
+    componentProps: {
+       showTime: true,
+       valueFormat: 'YYYY-MM-DD HH:mm:ss'
+     },
+    dynamicDisabled:true,
+    show: false
+  },
+  {
+    label: 'Type',
+    field: 'type',
+    component: 'JDictSelectTag',
+    componentProps:{
+        dictCode:"activity_type"
+     },
+    dynamicDisabled:true,
+    show: false
+  },
+  {
+    label: 'Amount',
+    field: 'inputAmount',
+    component: 'InputNumber',
+  },
+  {
+    label: 'Quest',
+    field: 'questRef',
+    component: 'Input',
+    dynamicDisabled:true,
+    show: false
+  },
+  {
+    label: 'Action Id',
+    field: 'actionRef',
+    component: 'Input',
+    dynamicDisabled:true,
+    show: false
+  },
+  {
+    label: 'Status',
+    field: 'status',
+    component: 'JDictSelectTag',
+    componentProps:{
+        dictCode:"activity_status"
+     },
+    show: false
+  },
+	// TODO 主键隐藏字段，目前写死为ID
+	{
+	  label: '',
+	  field: 'id',
+	  component: 'Input',
+	  show: false
+	},
+];
