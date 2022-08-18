@@ -19,6 +19,11 @@ export const columns: BasicColumn[] = [
     align:"center",
     dataIndex: 'token'
    },
+   {
+    title: 'Level Index',
+    align:"center",
+    dataIndex: 'lvlIndex'
+   },
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
@@ -44,6 +49,11 @@ export const formSchema: FormSchema[] = [
   {
     label: 'Token Allocation',
     field: 'token',
+    component: 'InputNumber',
+  },
+  {
+    label: 'Level Index',
+    field: 'lvlIndex',
     component: 'InputNumber',
   },
 	// TODO 主键隐藏字段，目前写死为ID
