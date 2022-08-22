@@ -12,7 +12,7 @@ export const columns: BasicColumn[] = [
    {
     title: 'Points for Level-Up',
     align:"center",
-    dataIndex: 'point'
+    dataIndex: 'points'
    },
    {
     title: 'Token Allocation',
@@ -23,6 +23,11 @@ export const columns: BasicColumn[] = [
     title: 'Level Index',
     align:"center",
     dataIndex: 'lvlIndex'
+   },
+   {
+    title: 'NFT Allocation',
+    align:"center",
+    dataIndex: 'nft'
    },
 ];
 //查询数据
@@ -43,7 +48,7 @@ export const formSchema: FormSchema[] = [
   },
   {
     label: 'Points for Level-Up',
-    field: 'point',
+    field: 'points',
     component: 'InputNumber',
   },
   {
@@ -55,6 +60,11 @@ export const formSchema: FormSchema[] = [
     label: 'Level Index',
     field: 'lvlIndex',
     component: 'InputNumber',
+  },
+  {
+    label: 'NFT Allocation',
+    field: 'nft',
+    component: 'Input',
   },
 	// TODO 主键隐藏字段，目前写死为ID
 	{

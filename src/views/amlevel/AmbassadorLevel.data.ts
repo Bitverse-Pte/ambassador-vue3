@@ -24,6 +24,11 @@ export const columns: BasicColumn[] = [
     align:"center",
     dataIndex: 'lvlIndex'
    },
+   {
+    title: 'NFT Allocation',
+    align:"center",
+    dataIndex: 'nft'
+   },
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
@@ -55,6 +60,11 @@ export const formSchema: FormSchema[] = [
     label: 'Level Index',
     field: 'lvlIndex',
     component: 'InputNumber',
+  },
+  {
+    label: 'NFT Allocation',
+    field: 'nft',
+    component: 'Input',
   },
 	// TODO 主键隐藏字段，目前写死为ID
 	{
