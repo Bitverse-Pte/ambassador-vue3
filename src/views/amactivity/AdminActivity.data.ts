@@ -4,49 +4,61 @@ import { rules} from '/@/utils/helper/validator';
 import { render } from '/@/utils/common/renderUtils';
 //列表数据
 export const columns: BasicColumn[] = [
-   {
-    title: 'Title',
-    align:"center",
-    dataIndex: 'title'
-   },
-   {
-    title: 'Sender',
-    align:"center",
-    dataIndex: 'sender'
-   },
-   {
-    title: 'Send time',
-    align:"center",
-    dataIndex: 'sendTime'
-   },
-   {
-    title: 'Type',
-    align:"center",
-    dataIndex: 'type_dictText'
-   },
-   {
-    title: 'Amount',
-    align:"center",
-    dataIndex: 'inputAmount'
-   },
-   {
-    title: 'Quest',
-    align:"center",
-    dataIndex: 'questRef'
-   },
-   {
-    title: 'Action Id',
-    align:"center",
-    dataIndex: 'actionRef'
-   },
-   {
-    title: 'Status',
-    align:"center",
-    dataIndex: 'status_dictText'
-   },
+  {
+   title: 'Title',
+   align:"center",
+   dataIndex: 'title'
+  },
+  {
+   title: 'Sender',
+   align:"center",
+   dataIndex: 'sender'
+  },
+  {
+   title: 'Send time',
+   align:"center",
+   dataIndex: 'sendTime'
+  },
+  {
+   title: 'Type',
+   align:"center",
+   dataIndex: 'type_dictText'
+  },
+  {
+   title: 'Amount',
+   align:"center",
+   dataIndex: 'inputAmount'
+  },
+  {
+   title: 'Quest Name',
+   align:"center",
+   dataIndex: 'questName'
+  },
+  {
+   title: 'Action Name',
+   align:"center",
+   dataIndex: 'actionName'
+  },
+  {
+   title: 'Status',
+   align:"center",
+   dataIndex: 'status_dictText'
+  },
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
+	{
+      label: "Sender",
+      field: 'sender',
+      component: 'Input',
+      colProps: {span: 6},
+ 	},
+	{
+      label: "Quest Id",
+      field: 'questRef',
+      component: 'Input',
+      colProps: {span: 6},
+ 	},
 ];
 //表单数据
 export const formSchema: FormSchema[] = [
@@ -83,13 +95,23 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
   },
   {
-    label: 'Quest',
+    label: 'Quest Id',
     field: 'questRef',
+    component: 'Input',
+  },
+  {
+    label: 'Quest Name',
+    field: 'questName',
     component: 'Input',
   },
   {
     label: 'Action Id',
     field: 'actionRef',
+    component: 'Input',
+  },
+  {
+    label: 'Action Name',
+    field: 'actionName',
     component: 'Input',
   },
   {
@@ -116,7 +138,7 @@ export const approvalFormSchema: FormSchema[] = [
     field: 'title',
     component: 'Input',
     dynamicDisabled:true,
-    show: false
+    show: true
   },
   {
     label: 'Sender',
@@ -149,20 +171,6 @@ export const approvalFormSchema: FormSchema[] = [
     label: 'Amount',
     field: 'inputAmount',
     component: 'InputNumber',
-  },
-  {
-    label: 'Quest',
-    field: 'questRef',
-    component: 'Input',
-    dynamicDisabled:true,
-    show: false
-  },
-  {
-    label: 'Action Id',
-    field: 'actionRef',
-    component: 'Input',
-    dynamicDisabled:true,
-    show: false
   },
   {
     label: 'Status',
