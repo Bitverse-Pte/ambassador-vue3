@@ -4,8 +4,8 @@ VOLUME /tmp
 ENV LANG en_US.UTF-8
 RUN echo "server {  \
                       listen       80; \
-                      location   /jeecgboot { \
-                      proxy_pass              https://teleport-ambassadorboot.qa.davionlabs.com/jeecg-boot; \
+                      location   /jeecg-boot { \
+                      proxy_pass              https://teleport-ambassadorboot.qa.davionlabs.com; \
                       proxy_redirect          off; \
                       proxy_set_header        Host jeecg-boot-system; \
                       proxy_set_header        X-Real-IP \$remote_addr; \
