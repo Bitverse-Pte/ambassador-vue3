@@ -25,6 +25,11 @@ export const columns: BasicColumn[] = [
    dataIndex: 'type_dictText'
   },
   {
+    title: 'Value',
+    align:"center",
+    dataIndex: 'value'
+  },
+  {
    title: 'Amount',
    align:"center",
    dataIndex: 'inputAmount'
@@ -88,6 +93,11 @@ export const formSchema: FormSchema[] = [
     componentProps:{
         dictCode:"activity_type"
      },
+  },
+  {
+    label: 'Value',
+    field: 'value',
+    component: 'InputTextArea',
   },
   {
     label: 'Amount',
@@ -166,6 +176,12 @@ export const approvalFormSchema: FormSchema[] = [
      },
     dynamicDisabled:true,
     show: false
+  },
+  {
+    label: 'Value',
+    field: 'value',
+    component: 'InputTextArea',
+    dynamicDisabled:true,
   },
   {
     label: 'Amount',
