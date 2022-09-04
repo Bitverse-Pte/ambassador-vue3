@@ -5,9 +5,8 @@ ENV LANG en_US.UTF-8
 RUN echo "server {  \
                       listen       80; \
                       location   /jeecg-boot { \
-                      proxy_pass              https://teleport-ambassadorboot.qa.davionlabs.com; \
-                      proxy_redirect          off; \
-                      proxy_set_header        Host jeecg-boot-system; \
+                      proxy_pass              https://teleport-ambassadorboot.qa.davionlabs.com/jeecg-boot; \
+                      proxy_set_header        Host teleport-ambassadorboot.qa.davionlabs.com; \
                       proxy_set_header        X-Real-IP \$remote_addr; \
                       proxy_set_header        X-Forwarded-For \$proxy_add_x_forwarded_for; \
                   } \

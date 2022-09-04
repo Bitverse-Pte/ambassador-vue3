@@ -12,10 +12,10 @@
     <!-- 是否开启评论区域 -->
     <template v-if="enableComment">
       <Tooltip title="关闭" placement="bottom" v-if="commentSpan > 0">
-        <RightSquareOutlined @click="handleCloseComment" />
+        <RightSquareOutlined @click="handleCloseComment" style="font-size: 16px" />
       </Tooltip>
       <Tooltip title="展开" placement="bottom" v-else>
-        <LeftSquareOutlined @click="handleOpenComment" />
+        <LeftSquareOutlined @click="handleOpenComment" style="font-size: 16px" />
       </Tooltip>
     </template>
 
@@ -30,7 +30,6 @@
   import { useDesign } from '/@/hooks/web/useDesign';
   import { Tooltip } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
-
   export default defineComponent({
     name: 'ModalClose',
     components: { Tooltip, FullscreenExitOutlined, FullscreenOutlined, CloseOutlined, LeftSquareOutlined, RightSquareOutlined },
@@ -44,7 +43,6 @@
     setup(props, { emit }) {
       const { prefixCls } = useDesign('basic-modal-close');
       const { t } = useI18n();
-
       const getClass = computed(() => {
         return [
           prefixCls,
@@ -54,17 +52,16 @@
           },
         ];
       });
-
       function handleCancel(e: Event) {
         emit('cancel', e);
       }
-
       function handleFullScreen(e: Event) {
         e?.stopPropagation();
         e?.preventDefault();
-        emit('fullscreen');
+        if (props.commentSpan == 0 || props.enableComment == false) {
+          emit('fullscreen');
+        }
       }
-
       //update-begin-author:taoyan date:2022-7-18 for: 关闭按钮的区域宽度 取决于是否有其他图标
       const closeWidth = computed(() => {
         if (props.canFullscreen && props.enableComment) {
@@ -74,7 +71,6 @@
         }
       });
       //update-end-author:taoyan date:2022-7-18 for: 关闭按钮的区域宽度 取决于是否有其他图标
-
       /**
        * 开启评论区域
        * @param e
@@ -82,9 +78,11 @@
       function handleOpenComment(e: Event) {
         e?.stopPropagation();
         e?.preventDefault();
+        if (props.fullScreen == false) {
+          emit('fullscreen');
+        }
         emit('comment', true);
       }
-
       /**
        * 关闭评论区域
        * @param e
@@ -94,7 +92,6 @@
         e?.preventDefault();
         emit('comment', false);
       }
-
       return {
         t,
         getClass,
@@ -114,22 +111,18 @@
     display: flex;
     height: 95%;
     align-items: center;
-
     .ant-modal-close-x {
       width: 140px !important;
     }
-
     > span {
       margin-left: 48px;
       font-size: 16px;
     }
-
     &--can-full {
       > span {
         margin-left: 12px;
       }
     }
-
     &:not(&--can-full) {
       > span:nth-child(1) {
         &:hover {
@@ -143,11 +136,9 @@
         }
       }
     }
-
     & span:nth-child(1) {
       display: inline-block;
       padding: 10px;
-
       &:hover {
         color: @primary-color;
       }
@@ -156,12 +147,10 @@
     & span:nth-child(2) {
       display: inline-block;
       padding: 10px 10px 10px 0;
-
       &:hover {
         color: @primary-color;
       }
     }
-
     & span:last-child {
       &:hover {
         color: @error-color;

@@ -24,32 +24,33 @@
       </ModalFooter>
     </template>
 
-    <ModalWrapper
-      :useWrapper="getProps.useWrapper"
-      :footerOffset="wrapperFooterOffset"
-      :fullScreen="fullScreenRef"
-      ref="modalWrapperRef"
-      :loading="getProps.loading"
-      :loading-tip="getProps.loadingTip"
-      :minHeight="getProps.minHeight"
-      :height="getWrapperHeight"
-      :visible="visibleRef"
-      :modalFooterHeight="footer !== undefined && !footer ? 0 : undefined"
-      v-bind="omit(getProps.wrapperProps, 'visible', 'height', 'modalFooterHeight')"
-      @ext-height="handleExtHeight"
-      @height-change="handleHeightChange"
-    >
-      <!-- update-begin-author:taoyan date:2022-7-18 for:  modal弹窗 支持评论 slot -->
-      <a-row>
-        <a-col :span="24 - commentSpan">
+    <!-- update-begin-author:taoyan date:2022-7-18 for:  modal弹窗 支持评论 slot -->
+    <a-row>
+      <a-col :span="24 - commentSpan" class="jeecg-modal-content">
+        <ModalWrapper
+          :useWrapper="getProps.useWrapper"
+          :footerOffset="wrapperFooterOffset"
+          :fullScreen="fullScreenRef"
+          ref="modalWrapperRef"
+          :loading="getProps.loading"
+          :loading-tip="getProps.loadingTip"
+          :minHeight="getProps.minHeight"
+          :height="getWrapperHeight"
+          :visible="visibleRef"
+          :modalFooterHeight="footer !== undefined && !footer ? 0 : undefined"
+          v-bind="omit(getProps.wrapperProps, 'visible', 'height', 'modalFooterHeight')"
+          @ext-height="handleExtHeight"
+          @height-change="handleHeightChange"
+        >
           <slot></slot>
-        </a-col>
-        <a-col :span="commentSpan">
-          <slot name="comment"></slot>
-        </a-col>
-      </a-row>
-      <!-- update-end-author:taoyan date:2022-7-18 for:  modal弹窗 支持评论 slot -->
-    </ModalWrapper>
+        </ModalWrapper>
+      </a-col>
+
+      <a-col :span="commentSpan" class="jeecg-comment-outer">
+        <slot name="comment"></slot>
+      </a-col>
+    </a-row>
+    <!-- update-end-author:taoyan date:2022-7-18 for:  modal弹窗 支持评论 slot -->
 
     <template #[item]="data" v-for="item in Object.keys(omit($slots, 'default'))">
       <slot :name="item" v-bind="data || {}"></slot>
@@ -58,7 +59,6 @@
 </template>
 <script lang="ts">
   import type { ModalProps, ModalMethods } from './typing';
-
   import { defineComponent, computed, ref, watch, unref, watchEffect, toRef, getCurrentInstance, nextTick } from 'vue';
   import Modal from './components/Modal';
   import ModalWrapper from './components/ModalWrapper.vue';
@@ -95,12 +95,10 @@
           });
         },
       };
-
       const instance = getCurrentInstance();
       if (instance) {
         emit('register', modalMethods, instance.uid);
       }
-
       // Custom title component: get title
       const getMergeProps = computed((): Recordable => {
         return {
@@ -108,13 +106,11 @@
           ...(unref(propsRef) as any),
         };
       });
-
       const { handleFullScreen, getWrapClassName, fullScreenRef } = useFullScreen({
         modalWrapperRef,
         extHeightRef,
         wrapClassName: toRef(getMergeProps.value, 'wrapClassName'),
       });
-
       // modal component does not need title and origin buttons
       const getProps = computed((): Recordable => {
         const opt = {
@@ -129,7 +125,6 @@
           wrapClassName: unref(getWrapClassName),
         };
       });
-
       const getBindValue = computed((): Recordable => {
         const attr = {
           ...attrs,
@@ -142,17 +137,14 @@
         }
         return omit(attr, 'title');
       });
-
       const getWrapperHeight = computed(() => {
         if (unref(fullScreenRef)) return undefined;
         return unref(getProps).height;
       });
-
       watchEffect(() => {
         visibleRef.value = !!props.visible;
         fullScreenRef.value = !!props.defaultFullscreen;
       });
-
       watch(
         () => unref(visibleRef),
         (v) => {
@@ -169,7 +161,6 @@
           immediate: false,
         }
       );
-
       // 取消事件
       async function handleCancel(e: Event) {
         e?.stopPropagation();
@@ -180,11 +171,9 @@
           visibleRef.value = !isClose;
           return;
         }
-
         visibleRef.value = false;
         emit('cancel', e);
       }
-
       /**
        * @description: 设置modal参数
        */
@@ -198,25 +187,20 @@
           fullScreenRef.value = !!props.defaultFullscreen;
         }
       }
-
       function handleOk(e: Event) {
         emit('ok', e);
       }
-
       function handleHeightChange(height: string) {
         emit('height-change', height);
       }
-
       function handleExtHeight(height: number) {
         extHeightRef.value = height;
       }
-
       function handleTitleDbClick(e) {
         if (!props.canFullscreen) return;
         e.stopPropagation();
         handleFullScreen(e);
       }
-
       //update-begin-author:taoyan date:2022-7-18 for: modal支持评论 slot
       const commentSpan = ref(0);
       watch(
@@ -234,7 +218,6 @@
         }
       }
       //update-end-author:taoyan date:2022-7-18 for: modal支持评论 slot
-
       return {
         handleCancel,
         getBindValue,
@@ -256,3 +239,16 @@
     },
   });
 </script>
+<style lang="less">
+  .jeecg-comment-outer {
+    border-left: 1px solid #f0f0f0;
+    .ant-tabs-nav-wrap {
+      /*  text-align: center;*/
+    }
+  }
+  .jeecg-modal-content {
+    > .scroll-container {
+      padding: 14px;
+    }
+  }
+</style>

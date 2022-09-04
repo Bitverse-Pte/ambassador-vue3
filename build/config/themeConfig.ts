@@ -15,7 +15,7 @@ export interface GenerateColorsParams {
   color?: string;
 }
 
-export function generateAntColors(color: string, theme: GenerateTheme = 'dark') {
+export function generateAntColors(color: string, theme: GenerateTheme = 'default') {
   return generate(color, {
     theme,
   });
