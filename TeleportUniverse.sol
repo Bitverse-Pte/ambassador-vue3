@@ -921,9 +921,38 @@ contract ERC721A is Ownable, ERC165, IERC721, IERC721Metadata {
      */
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         if (!_exists(tokenId)) revert URIQueryForNonexistentToken();
-
         string memory baseURI = _baseURI();
-        return bytes(baseURI).length != 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), ".png")) : '';
+        string memory tokenURIId = _queryURIId(tokenId);
+
+        return bytes(baseURI).length != 0 ? string(abi.encodePacked(baseURI, tokenURIId, ".json")) : '';
+    }
+
+    function _queryURIId(uint256 tokenId) internal view virtual returns (string memory) {
+        if ( _startTokenId() <= tokenId && tokenId < 8001) {
+            return "1";
+        } else if (8001 <= tokenId && tokenId < 11001) {
+            return "2";
+        } else if (11001 <= tokenId && tokenId < 12001) {
+            return "3";
+        } else if (12001 <= tokenId && tokenId < 12401) {
+            return "4";
+        } else if (12401 <= tokenId && tokenId < 12601) {
+            return "5";
+        } else if (12601 <= tokenId && tokenId < 12701) {
+            return "6";
+        } else if (12701 <= tokenId && tokenId < 12761) {
+            return "7";
+        } else if (12761 <= tokenId && tokenId < 13061) {
+            return "8";
+        } else if (13061 <= tokenId && tokenId < 13211) {
+            return "9";
+        } else if (13211 <= tokenId && tokenId < 13311) {
+            return "10";
+        } else if (13311 <= tokenId && tokenId < 13360) {
+            return "11";
+        } else {
+            return "12";
+        }
     }
 
     /**
