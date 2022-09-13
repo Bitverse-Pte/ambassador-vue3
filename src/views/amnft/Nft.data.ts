@@ -5,101 +5,142 @@ import { render } from '/@/utils/common/renderUtils';
 //列表数据
 export const columns: BasicColumn[] = [
    {
-    title: 'image',
-    align:"center",
-    dataIndex: 'image'
-   },
-   {
-    title: 'name',
+    title: 'Name',
     align:"center",
     dataIndex: 'name'
    },
    {
-    title: 'type',
-    align:"center",
-    dataIndex: 'type'
-   },
-   {
-    title: 'desc',
-    align:"center",
-    dataIndex: 'description'
-   },
-   {
-    title: 'address',
-    align:"center",
-    dataIndex: 'address'
-   },
-   {
-    title: 'total',
+    title: 'Total',
     align:"center",
     dataIndex: 'total'
    },
    {
-    title: 'inventory',
+    title: 'TokenId Start',
+    align:"center",
+    dataIndex: 'startIndex'
+   },
+   {
+    title: 'Next TokenId',
+    align:"center",
+    dataIndex: 'nextIndex'
+   },
+   {
+    title: 'TokenId End',
+    align:"center",
+    dataIndex: 'endIndex'
+   },
+   {
+    title: 'Inventory',
     align:"center",
     dataIndex: 'inventory'
    },
    {
-    title: 'delivered quantity',
+    title: 'Delivered Quantity',
     align:"center",
     dataIndex: 'delivered'
-   },
-   {
-    title: 'reuest quantity',
-    align:"center",
-    dataIndex: 'txRequestNum'
    },
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
 ];
-
 //表单数据
 export const formSchema: FormSchema[] = [
   {
-    label: 'image',
-    field: 'image',
-    component: 'Input',
-  },
-  {
-    label: 'name',
+    label: 'Name',
     field: 'name',
     component: 'Input',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 {...rules.duplicateCheckRule('nft', 'name',model,schema)[0]},
+          ];
+     },
   },
   {
-    label: 'type',
+    label: 'Total',
+    field: 'total',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
+  {
+    label: 'TokenId Start',
+    field: 'startIndex',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
+  {
+    label: 'Next TokenId',
+    field: 'nextIndex',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
+  {
+    label: 'TokenId End',
+    field: 'endIndex',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
+  {
+    label: 'Inventory',
+    field: 'inventory',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
+  {
+    label: 'Delivered Quantity',
+    field: 'delivered',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
+  {
+    label: 'Type',
     field: 'type',
     component: 'Input',
   },
   {
-    label: 'desc',
+    label: 'Contract Address',
+    field: 'contractAddress',
+    component: 'Input',
+  },
+  {
+    label: 'Image',
+    field: 'image',
+    component: 'Input',
+  },
+  {
+    label: 'Desc',
     field: 'description',
-    component: 'Input',
-  },
-  {
-    label: 'address',
-    field: 'address',
-    component: 'Input',
-  },
-  {
-    label: 'total',
-    field: 'total',
-    component: 'InputNumber',
-  },
-  {
-    label: 'inventory',
-    field: 'inventory',
-    component: 'InputNumber',
-  },
-  {
-    label: 'delivered quantity',
-    field: 'delivered',
-    component: 'InputNumber',
-  },
-  {
-    label: 'reuest quantity',
-    field: 'txRequestNum',
-    component: 'InputNumber',
+    component: 'InputTextArea',
   },
 	// TODO 主键隐藏字段，目前写死为ID
 	{
@@ -108,125 +149,4 @@ export const formSchema: FormSchema[] = [
 	  component: 'Input',
 	  show: false
 	},
-];
-
-//子表列表数据
-export const mintHistoryColumns: BasicColumn[] = [
-   {
-    title: 'contract address',
-    align:"center",
-    dataIndex: 'contractAddress'
-   },
-   {
-    title: 'mint account',
-    align:"center",
-    dataIndex: 'mintAccount'
-   },
-   {
-    title: 'contract_in_binary',
-    align:"center",
-    dataIndex: 'contractInBinary'
-   },
-   {
-    title: 'tx hash',
-    align:"center",
-    dataIndex: 'txHash'
-   },
-];
-//子表表单数据
-export const mintHistoryFormSchema: FormSchema[] = [
-  // TODO 子表隐藏字段，目前写死为ID
-  {
-    label: '',
-    field: 'id',
-    component: 'Input',
-    show: false
-  },
-  {
-    label: 'contract address',
-    field: 'contractAddress',
-    component: 'Input',
-  },
-  {
-    label: 'mint account',
-    field: 'mintAccount',
-    component: 'Input',
-  },
-  {
-    label: 'contract_in_binary',
-    field: 'contractInBinary',
-    component: 'InputTextArea',
-  },
-  {
-    label: 'tx hash',
-    field: 'txHash',
-    component: 'Input',
-  },
-];
-//子表列表数据
-export const deliveredHistoryColumns: BasicColumn[] = [
-   {
-    title: 'delivered time',
-    align:"center",
-    dataIndex: 'deliveredTime'
-   },
-   {
-    title: 'from',
-    align:"center",
-    dataIndex: 'fromAddress'
-   },
-   {
-    title: 'to',
-    align:"center",
-    dataIndex: 'toAddress'
-   },
-   {
-    title: 'tx hash',
-    align:"center",
-    dataIndex: 'txHash'
-   },
-   {
-    title: 'url',
-    align:"center",
-    dataIndex: 'scanUrl'
-   },
-];
-//子表表单数据
-export const deliveredHistoryFormSchema: FormSchema[] = [
-  // TODO 子表隐藏字段，目前写死为ID
-  {
-    label: '',
-    field: 'id',
-    component: 'Input',
-    show: false
-  },
-  {
-    label: 'delivered time',
-    field: 'deliveredTime',
-    component: 'DatePicker',
-    componentProps: {
-       showTime:true,
-       valueFormat: 'YYYY-MM-DD HH:mm:ss'
-     },
-  },
-  {
-    label: 'from',
-    field: 'fromAddress',
-    component: 'Input',
-  },
-  {
-    label: 'to',
-    field: 'toAddress',
-    component: 'Input',
-  },
-  {
-    label: 'tx hash',
-    field: 'txHash',
-    component: 'Input',
-  },
-  {
-    label: 'url',
-    field: 'scanUrl',
-    component: 'Input',
-  },
 ];

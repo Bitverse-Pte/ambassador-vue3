@@ -56,14 +56,23 @@ export const searchFormSchema: FormSchema[] = [
       label: "Sender",
       field: 'sender',
       component: 'Input',
-      colProps: {span: 6},
+      colProps: {span: 3},
  	},
 	{
       label: "Quest Id",
       field: 'questRef',
       component: 'Input',
-      colProps: {span: 6},
+      colProps: {span: 3},
  	},
+  {
+    label: "Type",
+    field: 'type',
+    component: 'JDictSelectTag',
+    componentProps:{
+        dictCode:"activity_type"
+     },
+    colProps: {span: 3},
+   },
 ];
 //表单数据
 export const formSchema: FormSchema[] = [

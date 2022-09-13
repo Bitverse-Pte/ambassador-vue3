@@ -1335,13 +1335,13 @@ contract TeleportUniverse is ERC721A {
     uint256 public mintPrice = 0.00 ether;
 
     bool public isSaleLive = true;
-    string public baseURI = "ipfs://QmfLVR9eyLeKHoW4wtYzoJCup4vNKMpCHWc148yjmjvwWk/";
+    string public baseURI = "ipfs://Qmesy4sbj9NPHpJzpRpoEtyY6LLYLQEGWPNQbS66u617c6/";
      mapping(address => uint) public addressClaimed;
 
     constructor() ERC721A("Teleport Universe", "TELEY") {}
     
     function ownerMint(address to, uint256 quantity) external onlyOwner {
-        require(totalSupply() + quantity <= maxSupply, "Minting exceeds max supply");
+        require(_totalMinted() + quantity <= maxSupply, "Minting exceeds max supply");
         require(quantity > 0, "Quantity less than 1");
 
         _safeMint(to, quantity);
