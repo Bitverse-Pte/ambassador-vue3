@@ -99,7 +99,7 @@ export const searchFormSchema: FormSchema[] = [
       field: "active",
       component: 'JSwitch',
       componentProps:{
-           query:true,
+          //  query:true,
        },
       colProps: {span: 6},
  	},
