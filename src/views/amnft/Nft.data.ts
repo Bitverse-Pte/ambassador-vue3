@@ -39,6 +39,12 @@ export const columns: BasicColumn[] = [
     align:"center",
     dataIndex: 'delivered'
    },
+   {
+    title: 'Image',
+    align:"center",
+    dataIndex: 'image',
+    customRender:render.renderImage,
+   },
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
@@ -140,7 +146,9 @@ export const formSchema: FormSchema[] = [
   {
     label: 'Image',
     field: 'image',
-    component: 'Input',
+     component: 'JImageUpload',
+     componentProps:{
+      },
   },
   {
     label: 'Desc',

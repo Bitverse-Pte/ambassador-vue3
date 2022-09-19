@@ -88,19 +88,21 @@ export const columns: BasicColumn[] = [
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
-  {
-    label: 'active',
-    field: 'active',
-     component: 'JSwitch',
-     componentProps:{
-     },
-  },
-  {
-    label: 'questKey',
-    field: "questKey",
-    component: 'Input',
-    colProps: {span: 3},
-  },
+     {
+      label: "quest key",
+      field: "questKey",
+      component: 'Input', //TODO 范围查询
+      colProps: {span: 6},
+	},
+	{
+      label: "active",
+      field: "active",
+      component: 'JSwitch',
+      componentProps:{
+           query:true,
+       },
+      colProps: {span: 6},
+ 	},
 	{
       label: "type",
       field: "type",
@@ -108,7 +110,7 @@ export const searchFormSchema: FormSchema[] = [
       componentProps:{
           dictCode:"quest_type"
       },
-      colProps: {span: 3},
+      colProps: {span: 6},
  	},
 	{
       label: "assign to",
@@ -117,7 +119,7 @@ export const searchFormSchema: FormSchema[] = [
       componentProps:{
           dictCode:"user_role"
       },
-      colProps: {span: 3},
+      colProps: {span: 6},
  	},
 ];
 
@@ -247,16 +249,6 @@ export const actionDefColumns: BasicColumn[] = [
     dataIndex: 'reward'
    },
    {
-    title: 'worth',
-    align:"center",
-    dataIndex: 'worth'
-   },
-   {
-    title: 'mandatory',
-    align:"center",
-    dataIndex: 'mandatory'
-   },
-   {
     title: 'config1',
     align:"center",
     dataIndex: 'config1'
@@ -267,64 +259,9 @@ export const actionDefColumns: BasicColumn[] = [
     dataIndex: 'config2'
    },
    {
-    title: 'config3',
-    align:"center",
-    dataIndex: 'config3'
-   },
-   {
-    title: 'config4',
-    align:"center",
-    dataIndex: 'config4'
-   },
-   {
-    title: 'config5',
-    align:"center",
-    dataIndex: 'config5'
-   },
-   {
-    title: 'config6',
-    align:"center",
-    dataIndex: 'config6'
-   },
-   {
-    title: 'config7',
-    align:"center",
-    dataIndex: 'config7'
-   },
-   {
-    title: 'config8',
-    align:"center",
-    dataIndex: 'config8'
-   },
-   {
-    title: 'config9',
-    align:"center",
-    dataIndex: 'config9'
-   },
-   {
-    title: 'original',
-    align:"center",
-    dataIndex: 'original'
-   },
-   {
     title: 'image',
     align:"center",
     dataIndex: 'image'
-   },
-   {
-    title: 'paid',
-    align:"center",
-    dataIndex: 'paid'
-   },
-   {
-    title: 'config_toggle',
-    align:"center",
-    dataIndex: 'configToggle'
-   },
-   {
-    title: 'actions_required',
-    align:"center",
-    dataIndex: 'actionsRequired'
    },
 ];
 //子表表单数据
