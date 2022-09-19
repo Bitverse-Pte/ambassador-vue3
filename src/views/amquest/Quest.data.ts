@@ -88,6 +88,12 @@ export const columns: BasicColumn[] = [
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
+  {
+    label: 'questKey',
+    field: "questKey",
+    component: 'Input',
+    colProps: {span: 3},
+  },
 	{
       label: "type",
       field: "type",
@@ -95,7 +101,7 @@ export const searchFormSchema: FormSchema[] = [
       componentProps:{
           dictCode:"quest_type"
       },
-      colProps: {span: 6},
+      colProps: {span: 3},
  	},
 	{
       label: "assign to",
@@ -104,7 +110,7 @@ export const searchFormSchema: FormSchema[] = [
       componentProps:{
           dictCode:"user_role"
       },
-      colProps: {span: 6},
+      colProps: {span: 3},
  	},
 ];
 

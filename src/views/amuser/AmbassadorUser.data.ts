@@ -73,6 +73,33 @@ export const columns: BasicColumn[] = [
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
+	{
+      label: "evm address",
+      field: "address",
+      component: 'Input',
+      colProps: {span: 6},
+ 	},
+	{
+      label: "邮箱",
+      field: "email",
+      component: 'Input',
+      colProps: {span: 6},
+ 	},
+	{
+      label: "用户名",
+      field: "username",
+      component: 'JInput',
+      colProps: {span: 6},
+ 	},
+	{
+      label: "当前等级",
+      field: "level",
+      component: 'JDictSelectTag',
+      componentProps:{
+          dictCode:"user_level"
+      },
+      colProps: {span: 6},
+ 	},
 ];
 
 //表单数据
