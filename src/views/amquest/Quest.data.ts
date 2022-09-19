@@ -89,6 +89,13 @@ export const columns: BasicColumn[] = [
 //查询数据
 export const searchFormSchema: FormSchema[] = [
   {
+    label: 'active',
+    field: 'active',
+     component: 'JSwitch',
+     componentProps:{
+     },
+  },
+  {
     label: 'questKey',
     field: "questKey",
     component: 'Input',
