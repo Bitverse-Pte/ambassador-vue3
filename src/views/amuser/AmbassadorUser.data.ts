@@ -91,6 +91,14 @@ export const searchFormSchema: FormSchema[] = [
       component: 'JInput',
       colProps: {span: 6},
  	},
+   {
+    label: '角色',
+    field: 'role',
+    component: 'JDictSelectTag',
+    componentProps:{
+        dictCode:"user_role"
+     },
+  },
 	{
       label: "当前等级",
       field: "level",
