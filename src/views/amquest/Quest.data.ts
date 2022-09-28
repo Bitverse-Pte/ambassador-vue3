@@ -28,7 +28,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'url'
    },
    {
-    title: 'rewards points',
+    title: 'rewards',
     align:"center",
     dataIndex: 'rewards'
    },
@@ -99,7 +99,7 @@ export const searchFormSchema: FormSchema[] = [
       field: "active",
       component: 'JSwitch',
       componentProps:{
-          //  query:true,
+           //query:true,
        },
       colProps: {span: 6},
  	},
@@ -149,9 +149,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
   },
   {
-    label: 'rewards points',
+    label: 'rewards',
     field: 'rewards',
-    component: 'InputNumber',
+    component: 'Input',
   },
   {
     label: 'type',

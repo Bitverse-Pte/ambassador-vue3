@@ -91,14 +91,15 @@ export const searchFormSchema: FormSchema[] = [
       component: 'JInput',
       colProps: {span: 6},
  	},
-   {
-    label: '角色',
-    field: 'role',
-    component: 'JDictSelectTag',
-    componentProps:{
-        dictCode:"user_role"
-     },
-  },
+	{
+      label: "角色",
+      field: "role",
+      component: 'JDictSelectTag',
+      componentProps:{
+          dictCode:"user_role"
+      },
+      colProps: {span: 6},
+ 	},
 	{
       label: "当前等级",
       field: "level",
@@ -284,22 +285,37 @@ export const amUserPointFormSchema: FormSchema[] = [
 //子表列表数据
 export const amUserTokenColumns: BasicColumn[] = [
    {
-    title: '发放数量',
+    title: 'Name',
+    align:"center",
+    dataIndex: 'name'
+   },
+   {
+    title: 'Amount',
     align:"center",
     dataIndex: 'amount'
    },
    {
-    title: '发放原因',
+    title: 'Status',
+    align:"center",
+    dataIndex: 'status_dictText'
+   },
+   {
+    title: 'Issue By',
     align:"center",
     dataIndex: 'issueBy'
    },
    {
-    title: '发放时间',
+    title: 'Claimed At',
+    align:"center",
+    dataIndex: 'claimed'
+   },
+   {
+    title: 'Issue Date',
     align:"center",
     dataIndex: 'issueDate'
    },
    {
-    title: '锁定时间',
+    title: 'Lock Time',
     align:"center",
     dataIndex: 'lockTime'
    },
@@ -314,17 +330,39 @@ export const amUserTokenFormSchema: FormSchema[] = [
     show: false
   },
   {
-    label: '发放数量',
+    label: 'Name',
+    field: 'name',
+    component: 'Input',
+  },
+  {
+    label: 'Amount',
     field: 'amount',
     component: 'InputNumber',
   },
   {
-    label: '发放原因',
+    label: 'Status',
+    field: 'status',
+    component: 'JDictSelectTag',
+    componentProps:{
+        dictCode:"user_token_state"
+     },
+  },
+  {
+    label: 'Issue By',
     field: 'issueBy',
     component: 'Input',
   },
   {
-    label: '发放时间',
+    label: 'Claimed At',
+    field: 'claimed',
+    component: 'DatePicker',
+    componentProps: {
+       showTime:true,
+       valueFormat: 'YYYY-MM-DD HH:mm:ss'
+     },
+  },
+  {
+    label: 'Issue Date',
     field: 'issueDate',
     component: 'DatePicker',
     componentProps: {
@@ -333,7 +371,7 @@ export const amUserTokenFormSchema: FormSchema[] = [
      },
   },
   {
-    label: '锁定时间',
+    label: 'Lock Time',
     field: 'lockTime',
     component: 'DatePicker',
     componentProps: {

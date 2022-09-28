@@ -882,13 +882,14 @@ contract ERC721A is Ownable, ERC165, IERC721, IERC721Metadata {
                     // There will always be an ownership that has an address and is not burned
                     // before an ownership that does not have an address and is not burned.
                     // Hence, curr will not underflow.
-                    while (true) {
-                        curr--;
-                        ownership = _ownerships[curr];
-                        if (ownership.addr != address(0)) {
-                            return ownership;
-                        }
-                    }
+                    // while (true) {
+                    //     curr--;
+                    //     ownership = _ownerships[curr];
+                    //     if (ownership.addr != address(0)) {
+                    //         return ownership;
+                    //     }
+                    // }
+                    require (false);
                 }
             }
         }
@@ -1104,8 +1105,13 @@ contract ERC721A is Ownable, ERC165, IERC721, IERC721Metadata {
             _addressData[to].balance += uint64(quantity);
             _addressData[to].numberMinted += uint64(quantity);
 
-            _ownerships[startTokenId].addr = to;
-            _ownerships[startTokenId].startTimestamp = uint64(block.timestamp);
+            uint256 updatedOwnershipIndex = startTokenId;
+            uint256 endOwnershipIndex = startTokenId + quantity;
+            do {
+                _ownerships[updatedOwnershipIndex].addr = to;
+                _ownerships[updatedOwnershipIndex].startTimestamp = uint64(block.timestamp);
+                updatedOwnershipIndex++;
+            } while (updatedOwnershipIndex != endOwnershipIndex);
 
             uint256 updatedIndex = startTokenId;
             uint256 end = updatedIndex + quantity;
