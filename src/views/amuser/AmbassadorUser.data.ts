@@ -382,86 +382,86 @@ export const amUserTokenFormSchema: FormSchema[] = [
 ];
 //子表列表数据
 export const amUserNftColumns: BasicColumn[] = [
-   {
-    title: 'NFT拥有种类',
-    align:"center",
-    dataIndex: 'nftType'
-   },
-   {
-    title: '发放原因',
-    align:"center",
-    dataIndex: 'issueBy'
-   },
-   {
-    title: '发放时间',
-    align:"center",
-    dataIndex: 'issueTime'
-   },
-   {
-    title: '铸造请求',
-    align:"center",
-    dataIndex: 'mintRequest'
-   },
-   {
-    title: 'NFT合约地址',
-    align:"center",
-    dataIndex: 'address'
-   },
-   {
-    title: '交易hash',
-    align:"center",
-    dataIndex: 'txHash'
-   },
-   {
-    title: '图片url',
-    align:"center",
-    dataIndex: 'url'
-   },
+  {
+   title: 'Token ID',
+   align:"center",
+   dataIndex: 'tokenId'
+  },
+  {
+   title: 'Sender',
+   align:"center",
+   dataIndex: 'issueBy'
+  },
+  {
+   title: 'Send Time',
+   align:"center",
+   dataIndex: 'issueTime'
+  },
+  {
+   title: 'NFT合约地址',
+   align:"center",
+   dataIndex: 'address'
+  },
+  {
+   title: '交易hash',
+   align:"center",
+   dataIndex: 'txHash'
+  },
+  {
+   title: '交易url',
+   align:"center",
+   dataIndex: 'url'
+  },
 ];
 //子表表单数据
 export const amUserNftFormSchema: FormSchema[] = [
-  // TODO 子表隐藏字段，目前写死为ID
-  {
-    label: '',
-    field: 'id',
-    component: 'Input',
-    show: false
-  },
-  {
-    label: 'NFT拥有种类',
-    field: 'nftType',
-    component: 'Input',
-  },
-  {
-    label: '发放原因',
-    field: 'issueBy',
-    component: 'Input',
-  },
-  {
-    label: '发放时间',
-    field: 'issueTime',
-    component: 'Input',
-  },
-  {
-    label: '铸造请求',
-    field: 'mintRequest',
-    component: 'Input',
-  },
-  {
-    label: 'NFT合约地址',
-    field: 'address',
-    component: 'Input',
-  },
-  {
-    label: '交易hash',
-    field: 'txHash',
-    component: 'Input',
-  },
-  {
-    label: '图片url',
-    field: 'url',
-    component: 'Input',
-  },
+ // TODO 子表隐藏字段，目前写死为ID
+ {
+   label: '',
+   field: 'id',
+   component: 'Input',
+   show: false
+ },
+ {
+   label: 'Token ID',
+   field: 'tokenId',
+   component: 'InputNumber',
+   dynamicDisabled:true,
+ },
+ {
+   label: 'Sender',
+   field: 'issueBy',
+   component: 'Input',
+ },
+ {
+   label: 'Send Time',
+   field: 'issueTime',
+   component: 'DatePicker',
+   componentProps: {
+      showTime:true,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss'
+    },
+ },
+ {
+   label: 'NFT合约地址',
+   field: 'address',
+   component: 'Input',
+ },
+ {
+   label: '交易hash',
+   field: 'txHash',
+   component: 'Input',
+ },
+ {
+   label: '交易url',
+   field: 'url',
+   component: 'Input',
+ },
+ {
+   label: 'NFT拥有种类',
+   field: 'nftType',
+   component: 'Input',
+ },
 ];
 //子表列表数据
 export const amUserQuestColumns: BasicColumn[] = [
