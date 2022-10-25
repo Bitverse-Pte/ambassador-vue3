@@ -216,6 +216,17 @@ export const formSchema: FormSchema[] = [
     field: 'telegramId',
     component: 'Input',
   },
+  {
+    label: 'Contributor历史分数(只有Ambassador)',
+    field: 'historyPoint',
+    component: 'InputNumber',
+    dynamicRules: ({model,schema}) => {
+          return [
+                 { required: false},
+                 { pattern: /^-?\d+$/, message: '请输入整数!'},
+          ];
+     },
+  },
 	// TODO 主键隐藏字段，目前写死为ID
 	{
 	  label: '',

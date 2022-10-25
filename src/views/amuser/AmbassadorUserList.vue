@@ -69,7 +69,7 @@
   import AmUserNftList from './AmUserNftList.vue'
   import AmUserQuestList from './AmUserQuestList.vue'
   import {columns, searchFormSchema} from './AmbassadorUser.data';
-  import {list, deleteOne, batchDelete, getImportUrl,getExportUrl} from './AmbassadorUser.api';
+  import {list, deleteOne, syncOne, upgradeOne, batchDelete, getImportUrl,getExportUrl} from './AmbassadorUser.api';
   import {downloadFile} from '/@/utils/common/renderUtils';
   //注册model
   const [registerModal, {openModal}] = useModal();
@@ -160,6 +160,15 @@
   function handleSuccess() {
       (selectedRowKeys.value = []) && reload();
    }
+
+  async function handleSync(record) {
+    await syncOne({id: record.id}, handleSuccess);
+  }
+
+  async function handleUpgrade(record) {
+    await upgradeOne({id: record.id}, handleSuccess);
+  }
+
    /**
       * 操作栏
       */
@@ -181,7 +190,23 @@
       {
         label: '详情',
         onClick: handleDetail.bind(null, record),
-      }, {
+      },
+      {
+        label: '同步nft',
+        popConfirm: {
+          title: '是否确认同步',
+          confirm: handleSync.bind(null, record),
+        }
+      },
+      {
+        label: '升级Ambassador',
+        popConfirm: {
+          title:`确认升级用户:${record.username} 为Ambassador,该操作不可逆。`,
+          confirm: handleUpgrade.bind(null, record),
+        },
+        disabled: 'ambassador'===record.role
+      },
+      {
         label: '删除',
         popConfirm: {
           title: '是否确认删除',

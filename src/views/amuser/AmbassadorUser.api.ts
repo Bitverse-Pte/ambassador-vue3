@@ -8,6 +8,8 @@ enum Api {
   save='/amuser/ambassadorUser/add',
   edit='/amuser/ambassadorUser/edit',
   deleteOne = '/amuser/ambassadorUser/delete',
+  syncOne = '/amuser/ambassadorUser/sync',
+  upgradeOne = '/amuser/ambassadorUser/upgrade',
   deleteBatch = '/amuser/ambassadorUser/deleteBatch',
   importExcel = '/amuser/ambassadorUser/importExcel',
   exportXls = '/amuser/ambassadorUser/exportXls',
@@ -54,6 +56,22 @@ export const list = (params) =>
  */
 export const deleteOne = (params,handleSuccess) => {
   return defHttp.delete({url: Api.deleteOne, params}, {joinParamsToUrl: true}).then(() => {
+    handleSuccess();
+  });
+}
+/**
+ * 同步单个
+ */
+ export const syncOne = (params,handleSuccess) => {
+  return defHttp.post({url: Api.syncOne, params}, {joinParamsToUrl: true}).then(() => {
+    handleSuccess();
+  });
+}
+/**
+ * 升级单个
+ */
+ export const upgradeOne = (params,handleSuccess) => {
+  return defHttp.post({url: Api.upgradeOne, params}, {joinParamsToUrl: true}).then(() => {
     handleSuccess();
   });
 }
